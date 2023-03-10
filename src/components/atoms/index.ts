@@ -1,4 +1,4 @@
 
 import VueButton from "./VueButton.vue";
-
-export { VueButton }
+import VueForm from "../atoms/VueForm.vue";
+export { VueButton, VueForm }

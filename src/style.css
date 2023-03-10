@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html,
+body,
+#app {  
+    @apply h-full w-full m-0 overflow-hidden text-gray-700 touch-manipulation;
+}
+/* touch-manipulation 可禁止雙擊縮放動作 */
+.center {
+    @apply flex justify-center items-center
+}

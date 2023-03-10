@@ -24,6 +24,7 @@ module.exports = {
     semi: 'off',
     'comma-dangle': 'off',
     'space-before-function-paren': 0,
-    '@typescript-eslint/no-inferrable-types': 'off'
+    '@typescript-eslint/no-inferrable-types': 'off',
+    "@typescript-eslint/no-explicit-any": ["off"],
   }
 }

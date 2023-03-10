@@ -1,14 +1,18 @@
 <script setup lang="ts">
-type color = "green" | "red" | "slate" | "white" | "blue";
+type color = "black" | "white";
 type variant = "default" | "link";
 
 interface Props {
-  variant: variant;
-  color: color;
+  variant?: variant;
+  color?: color;
   classes?: string;
 }
 
-defineProps<Props>();
+// 預設參數
+withDefaults(defineProps<Props>(), {
+  variant: "default",
+  color: "white",
+});
 </script>
 
 <script lang="ts">
@@ -25,12 +29,11 @@ export default {
       classes,
       variant === 'default'
         ? {
-            'center rounded-md p-3 text-xl shadow-md shadow-slate-400 active:translate-y-0.5 active:shadow-none': true,
-            'bg-blue-500 text-white hover:bg-blue-400': color === 'blue',
-            'bg-slate-100  hover:bg-slate-50': color === 'white',
-            'bg-slate-300  hover:bg-slate-200': color === 'slate',
-            'bg-red-500 text-white hover:bg-red-400': color === 'red',
-            'bg-green-500 text-white hover:bg-green-400': color === 'green',
+            'center rounded-md p-2 text-xl': true,
+            'bg-white text-black ring-2 ring-black hover:bg-slate-500 hover:text-white active:ring-slate-300':
+              color === 'white',
+            'bg-black text-white hover:bg-slate-500 active:ring-2 active:ring-slate-300':
+              color === 'black',
           }
         : {
             'text-slate-500 hover:text-slate-400': variant === 'link',
