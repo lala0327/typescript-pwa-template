@@ -1,7 +1,8 @@
 <script setup lang="ts">
-type color = "black" | "white";
-type variant = "default" | "link";
+type color = "black" | "white"; // 顏色
+type variant = "default" | "link"; // 樣式
 
+// props參數
 interface Props {
   variant?: variant;
   color?: color;

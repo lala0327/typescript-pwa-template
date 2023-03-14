@@ -26,5 +26,6 @@ module.exports = {
     'space-before-function-paren': 0,
     '@typescript-eslint/no-inferrable-types': 'off',
     "@typescript-eslint/no-explicit-any": ["off"],
+    "func-call-spacing": "off"
   }
 }

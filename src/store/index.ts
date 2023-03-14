@@ -1,7 +1,22 @@
-import { createStore } from "vuex";
+import { createStore, Store, useStore as baseUseStore } from "vuex";
+import { InjectionKey } from 'vue'
 import { mergeDeep } from '../utils'
+import { version } from '../../package.json' // 引入 version
 
-const store = createStore({
+// 定義類型
+export interface State {
+  config: object,
+  toast: object[],
+  userInfo: void,
+  isLoading: number,
+  version:string
+}
+
+// 定義 injection key
+// eslint-disable-next-line symbol-description
+export const key: InjectionKey<Store<State>> = Symbol()
+
+export const store = createStore<State>({
   state: {
     // 設定檔
     config: {},
@@ -10,13 +25,13 @@ const store = createStore({
     toast: [],
 
     // 登入資訊
-    userInfo: null,
+    userInfo: undefined,
 
     // 遮罩
     isLoading: 0,
 
     // 版本
-    version: "1.14.0.0",
+    version
   },
   mutations: {
     // 初始化
@@ -41,7 +56,7 @@ const store = createStore({
       state.toast = payload;
     },
     dismissToast(state, id) {
-      if (id) state.toast = state.toast.filter((r:any) => id !== r.id);
+      if (id) state.toast = state.toast?.filter((r:any) => id !== r.id);
       else state.toast = [];
     },
 
@@ -104,15 +119,19 @@ const store = createStore({
 // 1. subscribe 會在任何 mutate 時觸發，在那裡寫入 storage
 store.subscribe((mutation, state) => {
   // 預處理想存進 storage 的資料
-  const { locale }: any = state
+  const { version }: any = state
   // 這裡寫要存 local 的東西
   const data = {
-    locale,
+    version,
   }
   // 將資料以字串方式儲存
   localStorage.setItem('vuex-localStorage', JSON.stringify(data))
 })
 // 2. 最後 commit 會在 store 載入時，呼叫 mutations 的 initialize，從 storage 取值放入 vuex 中
 store.commit('initialize')
+
+export function useStore () {
+  return baseUseStore(key)
+}
 
 export default store

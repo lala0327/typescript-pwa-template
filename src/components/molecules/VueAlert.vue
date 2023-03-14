@@ -7,7 +7,7 @@ withDefaults(
     fieldArr?: any;
     isOtherText?: boolean;
     otherTextFunc?: any;
-    onSubmit: any;
+    onSubmit?: (values: object) => void;
   }>(),
   {
     fieldArr: () => [],
@@ -28,15 +28,17 @@ export default {
 <template>
   <VueFinalModal
     class="center flex-col"
-    content-class="w-4/5 relative p-8 rounded-lg bg-white dark:bg-gray-900 max-w-md center flex-col"
+    content-class="w-5/6 relative p-6 rounded-lg bg-white dark:bg-gray-900 max-w-md center flex-col"
     content-transition="vfm-slide-down"
     overlay-transition="vfm-fade"
   >
-    <p class="mb-8 text-2xl font-black"><slot name="title"></slot></p>
+    <p class="mb-8 text-xl font-black sm:text-2xl">
+      <slot name="title"></slot>
+    </p>
     <VueForm
+      @onSubmit="onSubmit"
       :fieldArr="fieldArr"
       submitText="Login"
-      :on-submit="onSubmit"
       class="w-full"
     >
       <template #action>

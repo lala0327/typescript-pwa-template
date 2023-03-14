@@ -1,6 +1,6 @@
 import './style.css' // 引入Css
 import "./validator"; // 引入表單驗證規則
-import store from './store' // 引入彈跳視窗套件
+import { store, key } from './store' // 引入彈跳視窗套件
 
 import { createApp } from 'vue'
 import App from './App.vue'
@@ -23,7 +23,7 @@ const renderApp = async () => {
     .use(router)
     .use(vfm)
     .use(MotionPlugin)
-    .use(store)
+    .use(store, key)
     .component('font-awesome-icon', FontAwesomeIcon)
     .mount('#app')
 }

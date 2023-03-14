@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { VueButton } from "../atoms";
 import { VueAlert } from "../molecules";
-import { useModal } from "vue-final-modal";
-
+import { useModal } from "vue-final-modal"; // 引入彈跳視窗
+import { useStore } from "./../../store"; // 引入全域變數
+const store = useStore(); // 引入全域變數
 // 其他登入方式icon
 const iconArr: string[] = [
   "fa-brands fa-facebook",
@@ -36,7 +37,7 @@ const SignUpModal = useModal({
   component: VueAlert,
   attrs: {
     fieldArr,
-    onSubmit(values: object) {
+    onSubmit(values) {
       console.log(values);
       SignUpModal.close();
     },
@@ -52,13 +53,14 @@ const LoginModal = useModal({
   component: VueAlert,
   attrs: {
     fieldArr,
-    onSubmit(values: object) {
-      console.log(values);
-      LoginModal.close();
-    },
     isOtherText: true,
     otherTextFunc() {
       console.log("forgot password");
+    },
+    onSubmit(values) {
+      console.log(values);
+      LoginModal.close();
+      store.dispatch("storeUserInfo", values);
     },
   },
   slots: {
@@ -110,7 +112,7 @@ export default {
         />
       </div>
     </div>
-
-    <!-- <p>{{ $store.state.vertion }}</p> -->
+    <!-- 版號 -->
+    <p class="absolute bottom-3 text-sm">- {{ store.state.version }} -</p>
   </div>
 </template>
