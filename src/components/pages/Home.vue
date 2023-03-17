@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { VueButton } from "../atoms";
-import { VueAlert } from "../molecules";
 import { useModal } from "vue-final-modal"; // 引入彈跳視窗
-import { useStore } from "./../../store"; // 引入全域變數
+import { useStore } from "../../store"; // 引入全域變數
+import HomeModal from "./../templates/Home/HomeModal.vue";
+import router from "../../router";
 const store = useStore(); // 引入全域變數
+
 // 其他登入方式icon
 const iconArr: string[] = [
   "fa-brands fa-facebook",
@@ -11,63 +13,41 @@ const iconArr: string[] = [
   "fa-brands fa-line",
 ];
 
+// 登入用彈窗
+const LoginModal = useModal({
+  component: HomeModal,
+  attrs: {
+    title: " - Log In to Continue - ",
+    isLogin: true,
+    submitText: "Log In",
+    onSubmit: (values: any) => {
+      console.log(values);
+      // 存帳戶名稱
+      store.dispatch("storeUserInfo", { acc: values.acc });
+      LoginModal.close();
+      router.push("/main");
+    },
+  },
+});
+
+// 註冊用彈窗
+const SignModal = useModal({
+  component: HomeModal,
+  attrs: {
+    title: " - Create a new Account - ",
+    isLogin: false,
+    submitText: "Sign Up",
+    onSubmit: (values: object) => {
+      console.log(values);
+      SignModal.close();
+    },
+  },
+});
+
 // 其他登入方式
 function otherLogin(type: string) {
   console.log(type);
 }
-
-// 表單內容
-const fieldArr: object[] = [
-  {
-    title: "Account",
-    name: "acc",
-    type: "string",
-    rules: "required",
-  },
-  {
-    title: "Password",
-    name: "pwd",
-    type: "string",
-    rules: "required",
-  },
-];
-
-// 註冊彈窗
-const SignUpModal = useModal({
-  component: VueAlert,
-  attrs: {
-    fieldArr,
-    onSubmit(values) {
-      console.log(values);
-      SignUpModal.close();
-    },
-  },
-  slots: {
-    title: " - Create a new Account - ",
-    submitText: "Sign Up",
-  },
-});
-
-// 登入彈窗
-const LoginModal = useModal({
-  component: VueAlert,
-  attrs: {
-    fieldArr,
-    isOtherText: true,
-    otherTextFunc() {
-      console.log("forgot password");
-    },
-    onSubmit(values) {
-      console.log(values);
-      LoginModal.close();
-      store.dispatch("storeUserInfo", values);
-    },
-  },
-  slots: {
-    title: " - Log In to Continue - ",
-    submitText: "Log In",
-  },
-});
 </script>
 
 <script lang="ts">
@@ -87,7 +67,7 @@ export default {
       <VueButton
         color="black"
         classes="w-full my-5"
-        @click="() => SignUpModal.open()"
+        @click="() => SignModal.open()"
       >
         Sign Up
       </VueButton>

@@ -1,4 +1,5 @@
-
-import Login from "./Login.vue";
 import Home from "./Home.vue";
-export { Login, Home }
+import MainPage from "./MainPage.vue";
+import Test from "./Test.vue";
+
+export { Home, MainPage, Test }

@@ -28,7 +28,12 @@ export default {
     <form @submit="handleSubmit($event, (values) => emit('onSubmit', values))">
       <slot name="header"></slot>
       <div v-for="(field, key) in fieldArr" :key="key" class="h-20 w-full">
-        <p class="font-black">{{ field.title }}</p>
+        <p
+          class="font-black transition-all"
+          :class="errors[field.name] ? 'text-red-500 ' : 'text-black'"
+        >
+          {{ field.title }}
+        </p>
         <Field
           :name="field.name"
           :type="field.type"

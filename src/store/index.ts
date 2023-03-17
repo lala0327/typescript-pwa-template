@@ -2,12 +2,14 @@ import { createStore, Store, useStore as baseUseStore } from "vuex";
 import { InjectionKey } from 'vue'
 import { mergeDeep } from '../utils'
 import { version } from '../../package.json' // 引入 version
-
+interface userInfo {
+  acc: string;
+}
 // 定義類型
 export interface State {
   config: object,
   toast: object[],
-  userInfo: void,
+  userInfo: userInfo,
   isLoading: number,
   version:string
 }
@@ -25,7 +27,7 @@ export const store = createStore<State>({
     toast: [],
 
     // 登入資訊
-    userInfo: undefined,
+    userInfo: { acc: '' },
 
     // 遮罩
     isLoading: 0,
@@ -119,10 +121,10 @@ export const store = createStore<State>({
 // 1. subscribe 會在任何 mutate 時觸發，在那裡寫入 storage
 store.subscribe((mutation, state) => {
   // 預處理想存進 storage 的資料
-  const { version }: any = state
+  const { version, userInfo }: any = state
   // 這裡寫要存 local 的東西
   const data = {
-    version,
+    version, userInfo
   }
   // 將資料以字串方式儲存
   localStorage.setItem('vuex-localStorage', JSON.stringify(data))
