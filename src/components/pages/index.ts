@@ -1,5 +1,6 @@
 import Home from "./Home.vue";
 import MainPage from "./MainPage.vue";
-import Test from "./Test.vue";
-
-export { Home, MainPage, Test }
+// MainPage 內頁
+import MainHome from "./MainPage/Home.vue";
+import MainList from "./MainPage/List.vue";
+export { Home, MainPage, MainHome, MainList }

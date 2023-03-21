@@ -3,7 +3,7 @@ import { ModalsContainer } from "vue-final-modal";
 </script>
 
 <template>
-  <div class="h-full w-full">
+  <div class="flex h-full w-full flex-col items-center justify-center">
     <router-view />
   </div>
 

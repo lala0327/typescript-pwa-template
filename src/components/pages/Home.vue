@@ -1,17 +1,13 @@
 <script setup lang="ts">
-import { VueButton } from "../atoms";
+import { VueButton, VueTime } from "../atoms"; // 引入按鈕、時間 compoments
 import { useModal } from "vue-final-modal"; // 引入彈跳視窗
-import { useStore } from "../../store"; // 引入全域變數
-import HomeModal from "./../templates/Home/HomeModal.vue";
-import router from "../../router";
-const store = useStore(); // 引入全域變數
+import HomeModal from "./../templates/Home/HomeModal.vue"; // 引入登入、註冊彈跳視窗
+import router from "../../router"; // 引入跳轉頁面動作
 
-// 其他登入方式icon
-const iconArr: string[] = [
-  "fa-brands fa-facebook",
-  "fa-brands fa-google",
-  "fa-brands fa-line",
-];
+import { useUserInfoStore } from "../../store/userInfo"; // 引入 UserInfo 全域參數
+import { useDefaultStore } from "../../store/default"; // 引入 Default 全域參數
+const userInfoStore = useUserInfoStore();
+const defaultStore = useDefaultStore();
 
 // 登入用彈窗
 const LoginModal = useModal({
@@ -23,9 +19,9 @@ const LoginModal = useModal({
     onSubmit: (values: any) => {
       console.log(values);
       // 存帳戶名稱
-      store.dispatch("storeUserInfo", { acc: values.acc });
+      userInfoStore.saveUserName(values.acc);
+      router.push("/main/home");
       LoginModal.close();
-      router.push("/main");
     },
   },
 });
@@ -43,6 +39,13 @@ const SignModal = useModal({
     },
   },
 });
+
+// 其他登入方式icon
+const iconArr: string[] = [
+  "fa-brands fa-facebook",
+  "fa-brands fa-google",
+  "fa-brands fa-line",
+];
 
 // 其他登入方式
 function otherLogin(type: string) {
@@ -62,6 +65,8 @@ export default {
     <font-awesome-icon icon="fa-solid fa-book-open" class="h-16 text-black" />
     <!-- TITLE -->
     <p class="my-2 text-2xl">TypeScript Test</p>
+    <VueTime></VueTime>
+
     <!-- BUTTON ( 註冊、登入 ) -->
     <div class="mt-6 mb-12 w-1/2 max-w-xs">
       <VueButton
@@ -92,7 +97,8 @@ export default {
         />
       </div>
     </div>
+
     <!-- 版號 -->
-    <p class="absolute bottom-3 text-sm">- {{ store.state.version }} -</p>
+    <p class="absolute bottom-3 text-sm">- {{ defaultStore.version }} -</p>
   </div>
 </template>

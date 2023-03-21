@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 
-import { Home, MainPage, Test } from "./components/pages";
+import { Home, MainPage, MainHome, MainList } from "./components/pages";
+
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
@@ -11,12 +12,20 @@ const routes: Array<RouteRecordRaw> = [
     path: "/main",
     name: "MainPage",
     component: MainPage,
+    children: [
+      {
+        path: "home",
+        name: "MainHome",
+        component: MainHome
+      },
+      {
+        path: "list",
+        name: "MainList",
+        component: MainList
+      },
+    ]
   },
-  {
-    path: "/test",
-    name: "Test",
-    component: Test,
-  },
+
 ];
 
 const router = createRouter({

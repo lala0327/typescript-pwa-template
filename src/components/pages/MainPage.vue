@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-  <MainBar>
-    <p>12345</p>
+  <MainBar class="max-w-3xl">
+    <RouterView></RouterView>
   </MainBar>
 </template>

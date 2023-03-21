@@ -1,29 +1,34 @@
 <script setup lang="ts">
-// import { ref } from "vue";
-import { useStore } from "../../../store"; // 引入全域變數
-const store = useStore(); // 引入全域變數
+// import router from "../../../router"; // 引入跳轉頁面動作
+import { useUserInfoStore } from "../../../store/userInfo"; // 引入全域變數
+const userInfoStore = useUserInfoStore(); // 引入全域變數
 
 interface iconArrType {
   name: string;
+  path: string;
   icon: string;
 }
 
 const iconArr: iconArrType[] = [
   {
-    name: "info",
-    icon: "fa-brands fa-facebook",
+    name: "home",
+    path: "/home",
+    icon: "fa-solid fa-house",
   },
   {
-    name: "info",
-    icon: "fa-brands fa-facebook",
+    name: "list",
+    path: "/list",
+    icon: "fa-solid fa-list",
   },
   {
-    name: "info",
-    icon: "fa-brands fa-facebook",
+    name: "notice",
+    path: "/notice",
+    icon: "fa-solid fa-bell",
   },
   {
-    name: "info",
-    icon: "fa-brands fa-facebook",
+    name: "setting",
+    path: "/setting",
+    icon: "fa-solid fa-gear",
   },
 ];
 const RouterPush = (item: iconArrType) => {
@@ -39,36 +44,42 @@ export default {
 </script>
 
 <template>
-  <div v-motion-slide-top class="h-full w-full">
+  <div v-motion-fade class="h-full w-full">
     <!-- Top Bar (Title & Search) -->
     <div
-      class="relative flex h-12 w-full items-center justify-between px-5 py-1"
+      class="relative flex h-12 w-full items-center justify-between px-5 py-1 font-black"
     >
       <!-- Title -->
-      <p class="text-xl font-black transition-all delay-100">
-        Hello ! {{ store.state.userInfo.acc }}
-      </p>
-
-      <!-- <font-awesome-icon icon="fa-solid fa-magnifying-glass" class="h-full" /> -->
+      <p class="text-xl">Hello ! {{ userInfoStore.userName }}</p>
     </div>
-
     <!-- Content -->
-    <div class="mx-5 h-[calc(100%-104px)] w-[calc(100%-32px)]">
+    <div class="h-[calc(100%-104px)] w-full px-5">
       <slot></slot>
     </div>
 
     <!-- Down Bar -->
-    <div class="flex h-14 w-full items-center justify-between px-5 pb-2">
+    <div
+      v-motion-slide-bottom
+      class="flex h-14 w-full items-center justify-between px-5 pb-2"
+    >
       <div
         class="flex h-full w-full items-center justify-evenly rounded-xl border-2 border-black"
       >
         <div
           v-for="(item, value, index) in iconArr"
           :key="index"
-          class="center h-full flex-col py-2"
+          class="center h-full cursor-pointer flex-col py-2 transition-all hover:text-slate-500 active:scale-75"
           @click="() => RouterPush(item)"
         >
-          <font-awesome-icon :icon="item.icon" class="h-full" />
+          <font-awesome-icon
+            :icon="item.icon"
+            class="h-full"
+            :class="
+              $route.path.includes('/' + item.name)
+                ? ' scale-90 text-slate-500'
+                : ''
+            "
+          />
         </div>
       </div>
     </div>
