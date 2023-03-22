@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import router from "../../../router"; // 引入跳轉頁面動作
 import { useUserInfoStore } from "../../../store/userInfo"; // 引入全域變數
+import { useDefaultStore } from "../../../store/default"; // 引入全域變數
 const userInfoStore = useUserInfoStore(); // 引入全域變數
-
+const defaultStore = useDefaultStore(); // 引入全域變數
 interface iconArrType {
   name: string;
   icon: string;
@@ -45,6 +46,8 @@ export default {
     >
       <!-- Title -->
       <p class="text-xl">Hello ! {{ userInfoStore.userName }}</p>
+      <p class="text-xl">version: {{ defaultStore.version }}</p>
+
     </div>
     <!-- Content -->
     <div class="h-[calc(100%-104px)] w-full px-5">

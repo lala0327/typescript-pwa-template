@@ -9,9 +9,7 @@ export const useUserInfoStore = defineStore('UserInfo', {
     userName: "",
   }),
   // 似 Computed、不可傳參數
-  getters: {
-    // doubleCount: (state) => state.count * 2,
-  },
+  getters: {},
   // 似 Methods
   actions: {
     saveUserName(userName:string) {

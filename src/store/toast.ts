@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import type { ToastProps } from "./../components/molecules/VueToast.vue";
+import type { ToastProps } from "../components/molecules/VueToast.vue";
 
 interface ToastInStore extends ToastProps {
   duration?: number
@@ -10,21 +10,17 @@ interface ToastState{
   toast: Array<ToastInStore>,
 }
 
-export const useToastStore = defineStore('Toast', {
+export const useToastStore = defineStore('toast', {
   state: (): ToastState => ({
     toast: [],
   }),
-  // 似 Computed、不可傳參數
-  getters: {
-    // doubleCount: (state) => state.count * 2,
-  },
   // 似 Methods
   actions: {
     // 新增 Toast
-    fireToast(payload:ToastProps) {
+    fireToast(payload:ToastInStore) {
       // 呼叫新增 Toast 時，建立隨機碼為 ID，用於關閉該 Toast
-      const id = payload.id || Math.random();
-      this.toast = [
+      const id = String(payload.id || Math.random())
+      const newToast = [
         ...this.toast,
         {
           id,
@@ -32,7 +28,7 @@ export const useToastStore = defineStore('Toast', {
           ...payload,
         },
       ];
-
+      this.toast = newToast
       // 如果 Toast 有 action，不做自動關閉
       if (!payload.action) {
         setTimeout(
@@ -41,8 +37,8 @@ export const useToastStore = defineStore('Toast', {
       }
     },
     // 刪除 Toast
-    dismissToast(id: number|string) {
-      if (id) this.toast = this.toast.filter((r) => id !== r.id);
+    dismissToast(id: ToastProps['id']) {
+      if (id) this.toast = this.toast.filter(r => id !== r.id);
       else this.toast = [];
     },
   },

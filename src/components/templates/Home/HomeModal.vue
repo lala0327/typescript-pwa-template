@@ -65,7 +65,7 @@ export default {
 <template>
   <VueFinalModal
     class="center flex-col"
-    content-class="w-5/6 relative p-6 rounded-lg bg-white dark:bg-gray-900 max-w-md center flex-col"
+    content-class="w-5/6 relative p-6 rounded-lg bg-white max-w-md center flex-col"
     content-transition="vfm-slide-down"
     overlay-transition="vfm-fade"
   >

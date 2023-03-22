@@ -1,18 +1,14 @@
 <script setup lang="ts">
 import { VueToast } from "../../molecules";
 import { VueButton } from "../../atoms";
-import { useToastStore } from "../../../store/toast"; // 引入 Default 全域參數
-const ToastStore = useToastStore();
+// import { useToastStore } from "../../../store/toast"; // 引入 Default 全域參數
+import { usePwaStore } from "../../../store/pwa";
+
+// const toastStore = useToastStore();
+const pwaStore = usePwaStore();
 
 function addToast1() {
-  ToastStore.fireToast({
-    id: "1",
-    title: "檢測到有可更新的版本",
-    text: "請點擊確認以進行重整更新",
-    variant: "info",
-    action: () => console.log("action"),
-    dismiss: () => ToastStore.dismissToast("1"),
-  });
+  pwaStore.PwaPrompt(pwaStore.options)
 }
 </script>
 
