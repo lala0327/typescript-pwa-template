@@ -4,6 +4,7 @@ import { ref, computed } from "vue";
 
 interface contentType {
   name: string;
+  type: string;
   detail: string;
 }
 const searchText = ref<string>(""); // 輸入框內容
@@ -11,26 +12,32 @@ const searchText = ref<string>(""); // 輸入框內容
 const contentList: contentType[] = [
   {
     name: "123",
+    type: "aaa",
     detail: "1234567890",
   },
   {
     name: "123",
+    type: "aaa",
     detail: "1234567890",
   },
   {
     name: "123",
+    type: "aaa",
     detail: "1234567890",
   },
   {
     name: "123",
+    type: "aaa",
     detail: "1234567890",
   },
   {
     name: "123",
+    type: "aaa",
     detail: "1234567890",
   },
   {
     name: "123",
+    type: "aaa",
     detail: "1234567890",
   },
 ];
@@ -78,14 +85,14 @@ export default {
               class="h-5 rounded-md border border-black bg-white p-1"
             />
             <!-- text -->
-            <div class="center ml-2 flex-col">
-              <p class="text-xs">111</p>
-              <p class="text-xs">45564</p>
+            <div class="ml-2 flex w-full flex-col items-start justify-center">
+              <p class="text-xs">{{ item.type }}</p>
+              <p class="text-xs">{{ item.detail }}</p>
             </div>
           </div>
           <!-- Bottom -->
           <div class="flex w-full items-center justify-between">
-            <p class="text-2xl font-black">1111111</p>
+            <p class="text-3xl font-black">{{ item.name }}</p>
             <font-awesome-icon icon="fa-solid fa-angle-right" class="mr-5" />
           </div>
         </div>

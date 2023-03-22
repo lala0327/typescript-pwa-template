@@ -1,6 +1,6 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-
-import { Home, MainPage, MainHome, MainList } from "./components/pages";
+import { createRouter, createWebHistory } from "vue-router";
+import type { RouteRecordRaw } from 'vue-router'
+import { Home, MainPage, MainHome, MainList, MainNotice, MainSetting } from "./components/pages";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -22,6 +22,16 @@ const routes: Array<RouteRecordRaw> = [
         path: "list",
         name: "MainList",
         component: MainList
+      },
+      {
+        path: "notice",
+        name: "MainNotice",
+        component: MainNotice
+      },
+      {
+        path: "setting",
+        name: "MainSetting",
+        component: MainSetting
       },
     ]
   },

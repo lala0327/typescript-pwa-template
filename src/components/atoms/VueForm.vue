@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ErrorMessage, Field, Form as VeeForm } from "vee-validate";
 
-interface formArray {
+interface VueFormProps {
   title: string;
   name: string;
   type: string;
@@ -9,7 +9,7 @@ interface formArray {
 }
 
 defineProps<{
-  fieldArr: formArray[];
+  fieldArr: VueFormProps[];
 }>();
 
 const emit = defineEmits<{

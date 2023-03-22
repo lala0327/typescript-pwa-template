@@ -1,4 +1,3 @@
+import VueToast from "./VueToast.vue";
 
-import VueAlert from "./VueAlert.vue";
-
-export { VueAlert }
+export { VueToast }

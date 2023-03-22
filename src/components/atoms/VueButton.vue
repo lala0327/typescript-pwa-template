@@ -1,16 +1,13 @@
 <script setup lang="ts">
-type color = "black" | "white"; // 顏色
-type variant = "default" | "link"; // 樣式
-
 // props參數
-interface Props {
-  variant?: variant;
-  color?: color;
+interface VueButtonProps {
+  variant?: "default" | "link"; // 顏色
+  color?: "black" | "white"; // 樣式
   classes?: string;
 }
 
 // 預設參數
-withDefaults(defineProps<Props>(), {
+withDefaults(defineProps<VueButtonProps>(), {
   variant: "default",
   color: "white",
 });

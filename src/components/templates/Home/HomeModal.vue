@@ -2,16 +2,16 @@
 import { VueFinalModal } from "vue-final-modal";
 import { VueForm, VueButton } from "../../atoms";
 import { Field, ErrorMessage } from "vee-validate";
+// props參數
+interface HomeModalProps {
+  title: string;
+  isLogin: boolean;
+  submitText: string;
+  onSubmit: (values: object) => void;
+}
 
-withDefaults(
-  defineProps<{
-    title: string;
-    isLogin: boolean;
-    submitText: string;
-    onSubmit: (values: object) => void;
-  }>(),
-  {}
-);
+// 預設參數
+withDefaults(defineProps<HomeModalProps>(), {});
 
 // 登入用表單
 const LoginFieldArr = [
