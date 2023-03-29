@@ -29,8 +29,8 @@ export default {
       <slot name="header"></slot>
       <div v-for="(field, key) in fieldArr" :key="key" class="h-20 w-full">
         <p
-          class="font-black transition-all"
-          :class="errors[field.name] ? 'text-red-500 ' : 'text-black'"
+          class="font-bold transition-all"
+          :class="errors[field.name] ? 'text-err' : ''"
         >
           {{ field.title }}
         </p>
@@ -38,17 +38,17 @@ export default {
           :name="field.name"
           :type="field.type"
           :rules="field.rules"
-          class="w-full rounded-sm border border-black py-1 px-3 transition-all"
+          class="w-full rounded-sm border border-secondary py-1 px-3 transition-all dark:text-secondary"
           :class="
             errors[field.name]
-              ? 'border-red-500 focus-visible:outline-red-500'
-              : 'border-black'
+              ? 'focus-visible:outline-err'
+              : 'focus-visible:outline-secondary focus-visible:dark:outline-primary'
           "
         />
         <ErrorMessage
           v-motion-slide-left
           :name="field.name"
-          class="flex justify-end text-sm text-red-500"
+          class="flex justify-end text-sm text-err"
         />
       </div>
       <slot name="action"></slot>

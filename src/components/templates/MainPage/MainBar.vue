@@ -42,12 +42,11 @@ export default {
   <div class="h-full w-full">
     <!-- Top Bar (Title & Search) -->
     <div
-      class="relative flex h-12 w-full items-center justify-between px-5 py-1 font-black"
+      class="relative flex h-12 w-full items-center justify-between px-5 py-1 font-bold"
     >
       <!-- Title -->
       <p class="text-xl">Hello ! {{ userInfoStore.userName }}</p>
       <p class="text-xl">version: {{ defaultStore.version }}</p>
-
     </div>
     <!-- Content -->
     <div class="h-[calc(100%-104px)] w-full px-5">
@@ -60,23 +59,15 @@ export default {
         <div
           v-for="(item, value, index) in iconArr"
           :key="index"
-          class="center h-10 w-10 cursor-pointer flex-col py-2 transition-all hover:text-slate-500 active:scale-75"
+          class="center h-10 w-10 cursor-pointer flex-col py-2 transition-all hover:opacity-90 active:scale-75"
           :class="
             $route.path.includes('/' + item.name)
-              ? 'rounded-full bg-gray-700 text-white'
+              ? 'rounded-full bg-secondary text-primary dark:bg-primary dark:text-secondary'
               : ''
           "
           @click="() => RouterPush(item)"
         >
-          <font-awesome-icon
-            :icon="item.icon"
-            class="h-full"
-            :class="
-              $route.path.includes('/' + item.name)
-                ? ' text-white'
-                : 'text-gray-700'
-            "
-          />
+          <font-awesome-icon :icon="item.icon" class="h-full" />
         </div>
       </div>
     </div>

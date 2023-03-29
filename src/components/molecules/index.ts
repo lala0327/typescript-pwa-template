@@ -1,3 +1,3 @@
 import VueToast from "./VueToast.vue";
-
-export { VueToast }
+import DarkMode from "./DarkMode.vue";
+export { VueToast, DarkMode }

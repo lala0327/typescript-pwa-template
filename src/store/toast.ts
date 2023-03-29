@@ -44,6 +44,6 @@ export const useToastStore = defineStore('toast', {
   },
   // 設定要存 localStorage 的資料
   persist: {
-    paths: ['toast'],
+    paths: [],
   },
 })

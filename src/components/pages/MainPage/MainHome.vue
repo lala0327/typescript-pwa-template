@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { VueToast } from "../../molecules";
 import { VueButton } from "../../atoms";
 // import { useToastStore } from "../../../store/toast"; // 引入 Default 全域參數
 import { usePwaStore } from "../../../store/pwa";
@@ -8,7 +7,7 @@ import { usePwaStore } from "../../../store/pwa";
 const pwaStore = usePwaStore();
 
 function addToast1() {
-  pwaStore.PwaPrompt(pwaStore.options)
+  pwaStore.PwaPrompt(pwaStore.options);
 }
 </script>
 
@@ -20,7 +19,6 @@ export default {
 
 <template>
   <div class="h-full w-full">
-    <VueToast variant="success" text="333" title="33333"></VueToast>
     <VueButton @click="addToast1">1</VueButton>
 
     <div class=""></div>

@@ -5,7 +5,8 @@ import HomeModal from "./../templates/Home/HomeModal.vue"; // 引入登入、註
 import router from "../../router"; // 引入跳轉頁面動作
 
 import { useUserInfoStore } from "../../store/userInfo"; // 引入 UserInfo 全域參數
-import { useDefaultStore } from "../../store/default"; // 引入 Default 全域參數
+import { useDefaultStore } from "../../store/default";
+
 const userInfoStore = useUserInfoStore();
 const defaultStore = useDefaultStore();
 
@@ -60,30 +61,31 @@ export default {
 </script>
 
 <template>
-  <div class="center h-full w-full flex-col font-black">
+  <div class="center h-full w-full flex-col">
     <!-- ICON -->
-    <font-awesome-icon icon="fa-solid fa-book-open" class="h-16 text-black" />
+    <font-awesome-icon icon="fa-solid fa-book-open" class="h-16" />
     <!-- TITLE -->
-    <p class="my-2 text-2xl">TypeScript Test</p>
+    <p class="my-2 text-2xl font-bold">TypeScript Test</p>
     <VueTime></VueTime>
 
     <!-- BUTTON ( 註冊、登入 ) -->
     <div class="mt-6 mb-12 w-1/2 max-w-xs">
       <VueButton
-        color="black"
+        color="outline_secondary"
         classes="w-full my-5"
         @click="() => SignModal.open()"
       >
         Sign Up
       </VueButton>
       <VueButton
-        color="white"
+        color="secondary"
         classes="w-full my-5"
         @click="() => LoginModal.open()"
       >
         Log In
       </VueButton>
     </div>
+
     <!-- 其他登入方式 -->
     <div class="center flex-col">
       <b> - Log in with - </b>
@@ -92,7 +94,7 @@ export default {
           v-for="icon in iconArr"
           :key="icon"
           :icon="icon"
-          class="mx-4 cursor-pointer text-3xl transition-all hover:text-slate-500 active:scale-75"
+          class="mx-4 cursor-pointer text-3xl transition-all active:scale-75"
           @click="() => otherLogin(icon)"
         />
       </div>

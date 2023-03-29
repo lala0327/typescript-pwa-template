@@ -65,12 +65,12 @@ export default {
 <template>
   <VueFinalModal
     class="center flex-col"
-    content-class="w-5/6 relative p-6 rounded-lg bg-white max-w-md center flex-col"
+    content-class="w-5/6 relative p-6 rounded-lg max-w-md center flex-col bg-primary dark:bg-secondary"
     content-transition="vfm-slide-down"
     overlay-transition="vfm-fade"
   >
     <!-- Title -->
-    <p class="mb-8 text-center text-xl font-black sm:text-2xl">
+    <p class="mb-8 text-center text-xl font-bold sm:text-2xl">
       {{ title }}
     </p>
     <VueForm
@@ -103,9 +103,7 @@ export default {
               />
               <u
                 class="mx-2 cursor-pointer transition-all"
-                :class="
-                  !meta.validated || meta.valid ? 'text-black' : 'text-red-500'
-                "
+                :class="!meta.validated || meta.valid ? '' : 'text-err'"
               >
                 I agree some term
               </u>
@@ -114,11 +112,11 @@ export default {
           <ErrorMessage
             v-motion-slide-left
             name="checkbox"
-            class="flex justify-end text-sm text-red-500"
+            class="flex justify-end text-sm text-err"
           />
         </div>
         <!-- 按鈕區 -->
-        <VueButton class="mt-6 w-full" type="submit" color="black">
+        <VueButton class="mt-6 w-full" type="submit" color="secondary">
           {{ submitText }}
         </VueButton>
       </template>

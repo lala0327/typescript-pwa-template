@@ -32,19 +32,19 @@ export default {
 
 <template>
   <div
-    class="mb-2 flex w-max max-w-full overflow-hidden rounded-lg bg-white shadow-md"
+    class="mb-2 flex w-max max-w-full overflow-hidden rounded-lg bg-primary shadow-md"
   >
     <!-- 左邊 Icon 顯示 -->
     <div
       class="center w-12"
       :class="{
-        'bg-green-500': variant === 'success',
-        'bg-orange-300': variant === 'info',
-        'bg-yellow-400': variant === 'warning',
-        'bg-red-500': variant === 'error',
+        'bg-green': variant === 'success',
+        'bg-orange': variant === 'info',
+        'bg-yellow': variant === 'warning',
+        'bg-err': variant === 'error',
       }"
     >
-      <font-awesome-icon :icon="icons[variant]" class="text-xl text-white" />
+      <font-awesome-icon :icon="icons[variant]" class="text-xl text-primary" />
     </div>
 
     <!-- 右邊文字資訊 -->
@@ -54,24 +54,24 @@ export default {
         <span
           class="font-semibold capitalize"
           :class="{
-            'text-green-500': variant === 'success',
-            'text-orange-300': variant === 'info',
-            'text-yellow-400': variant === 'warning',
-            'text-red-500': variant === 'error',
+            'text-green': variant === 'success',
+            'text-orange': variant === 'info',
+            'text-yellow': variant === 'warning',
+            'text-err': variant === 'error',
           }"
         >
           {{ title || variant }}
         </span>
-        <p class="text-sm opacity-75">{{ text }}</p>
+        <p class="text-sm text-secondary opacity-75">{{ text }}</p>
       </div>
 
       <!-- action & dismiss -->
       <div v-if="action" class="center ml-3">
         <VueButton variant="link" class="mx-2" @click="action">
-          <font-awesome-icon icon="fa-check" class="text-green-500" />
+          <font-awesome-icon icon="fa-check" class="text-green" />
         </VueButton>
         <VueButton variant="link" class="mx-2" @click="dismiss">
-          <font-awesome-icon icon="fa-times" class="text-red-500" />
+          <font-awesome-icon icon="fa-times" class="text-err" />
         </VueButton>
       </div>
     </div>

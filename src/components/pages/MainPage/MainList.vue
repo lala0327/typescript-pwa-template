@@ -66,7 +66,7 @@ export default {
     <VueSearch @setSearchText="(val) => (searchText = val)"></VueSearch>
     <!-- 讓資料滑動時有漸層效果 -->
     <div
-      class="absolute top-9 h-6 w-full bg-gradient-to-t from-white/0 to-white/100"
+      class="absolute top-9 h-6 w-full bg-gradient-to-t from-primary/0 to-primary/100 dark:from-secondary/0 dark:to-secondary/100"
     ></div>
 
     <!-- 內容列表 -->
@@ -76,13 +76,13 @@ export default {
         :key="index"
         class="cursor-pointer"
       >
-        <div class="center my-3 w-full flex-col rounded-md bg-slate-200 p-2">
+        <div class="center bg-slate-200 my-3 w-full flex-col rounded-md p-2">
           <!-- Top -->
           <div class="mb-2 flex w-full items-center justify-start">
             <!-- icon -->
             <font-awesome-icon
               icon="fa-solid fa-list"
-              class="h-5 rounded-md border border-black bg-white p-1"
+              class="border-black bg-white h-5 rounded-md border p-1"
             />
             <!-- text -->
             <div class="ml-2 flex w-full flex-col items-start justify-center">
@@ -92,7 +92,7 @@ export default {
           </div>
           <!-- Bottom -->
           <div class="flex w-full items-center justify-between">
-            <p class="text-3xl font-black">{{ item.name }}</p>
+            <p class="text-3xl font-bold">{{ item.name }}</p>
             <font-awesome-icon icon="fa-solid fa-angle-right" class="mr-5" />
           </div>
         </div>
@@ -101,7 +101,7 @@ export default {
 
     <!-- 讓資料滑動時有漸層效果 -->
     <div
-      class="absolute bottom-0 h-8 w-full bg-gradient-to-b from-white/0 to-white/100"
+      class="absolute bottom-0 h-8 w-full bg-gradient-to-b from-primary/0 to-primary/100 dark:from-secondary/0 dark:to-secondary/100"
     ></div>
   </div>
 </template>

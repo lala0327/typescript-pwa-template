@@ -28,7 +28,7 @@ export default {
     />
     <input
       type="text"
-      class="w-full rounded-md border-2 border-black py-1 pl-7 pr-3"
+      class="border-black w-full rounded-md border-2 py-1 pl-7 pr-3 dark:text-secondary"
       placeholder="Search..."
       v-model="searchText"
     />

@@ -2,14 +2,14 @@
 // props參數
 interface VueButtonProps {
   variant?: "default" | "link"; // 顏色
-  color?: "black" | "white"; // 樣式
+  color?: "secondary" | "outline_secondary"; // 樣式
   classes?: string;
 }
 
 // 預設參數
 withDefaults(defineProps<VueButtonProps>(), {
   variant: "default",
-  color: "white",
+  color: "secondary",
 });
 </script>
 
@@ -21,20 +21,20 @@ export default {
 
 <template>
   <button
-    class="font-black transition-all"
+    class="font-bold transition-all"
     type="button"
     :class="[
       classes,
       variant === 'default'
         ? {
             'center rounded-md p-2 text-xl': true,
-            'bg-white text-black ring-2 ring-black hover:bg-slate-500 hover:text-white active:ring-slate-300':
-              color === 'white',
-            'bg-black text-white hover:bg-slate-500 active:ring-2 active:ring-slate-300':
-              color === 'black',
+            'bg-secondary text-primary hover:bg-secondary/90 active:ring-2 active:ring-tertiary dark:bg-primary dark:text-secondary hover:dark:bg-primary/90':
+              color === 'secondary',
+            'border-2 border-secondary bg-primary hover:bg-primary/90 active:ring-2 active:ring-tertiary dark:border-primary dark:bg-secondary':
+              color === 'outline_secondary',
           }
         : {
-            'text-slate-500 hover:text-slate-400': variant === 'link',
+            'text-secondary hover:opacity-80': variant === 'link',
           },
     ]"
   >

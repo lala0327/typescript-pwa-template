@@ -5,7 +5,7 @@
 html,
 body,
 #app {  
-    @apply h-full w-full m-0 overflow-hidden text-gray-700 touch-manipulation;
+    @apply h-full w-full m-0 overflow-hidden bg-primary text-secondary touch-manipulation dark:bg-secondary dark:text-primary ;
 }
 /* touch-manipulation 可禁止雙擊縮放動作 */
 .center {
